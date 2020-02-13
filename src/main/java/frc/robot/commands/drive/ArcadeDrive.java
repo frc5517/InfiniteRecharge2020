@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 /**
  * An example command that uses an example drive.
  */
-public class CurvatureDrive extends CommandBase {
+public class ArcadeDrive extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Drivetrain drivetrain;
   private final DoubleSupplier yForward, zRotation;
@@ -26,7 +26,7 @@ public class CurvatureDrive extends CommandBase {
    *
    * @param drive The drive used by this command.
    */
-  public CurvatureDrive(Drivetrain drive, DoubleSupplier forward, DoubleSupplier rotation) {
+  public ArcadeDrive(Drivetrain drive, DoubleSupplier forward, DoubleSupplier rotation) {
     drivetrain = drive;
     yForward = forward;
     zRotation = rotation;
@@ -41,7 +41,7 @@ public class CurvatureDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    drivetrain.curvatureDrive(yForward.getAsDouble(), zRotation.getAsDouble(), true);
+    drivetrain.arcadeDrive(yForward.getAsDouble(), zRotation.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.
