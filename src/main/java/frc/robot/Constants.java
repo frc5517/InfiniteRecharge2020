@@ -24,4 +24,9 @@ public final class Constants {
     public static final int DRIVE_FR_PORT = 3;
     public static final int DRIVE_MR_PORT = 4;
     public static final int DRIVE_RR_PORT = 5;
+
+    // controller constants
+    public static final int DRIVER_JOYSTICK_L_PORT = 0;
+    public static final int DRIVER_JOYSTICK_R_PORT = 1;
+    public static final int OPERATOR_CONTROLLER_PORT = 2;
 }

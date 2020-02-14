@@ -14,7 +14,8 @@ import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class TankDrive extends CommandBase {
-  private final Drivetrain drivetrain = new Drivetrain();
+  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+  private final Drivetrain drivetrain;
   private final DoubleSupplier yLeft, yRight;
 
   /**

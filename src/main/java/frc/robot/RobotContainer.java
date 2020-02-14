@@ -9,8 +9,14 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import frc.robot.commands.drive.ArcadeDrive;
 import frc.robot.commands.drive.CurvatureDrive;
+import frc.robot.commands.drive.TankDrive;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.utilities.Gamepad;
+import frc.robot.utilities.LogitechJoystick;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -23,15 +29,48 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Drivetrain drivetrain = new Drivetrain();
 
-  private final CurvatureDrive m_autoCommand = null;
+  private final Command autoCommand = null;
 
+  SendableChooser<Command> autoChooser = new SendableChooser<>();
 
+  LogitechJoystick driverJoystickLeft = new LogitechJoystick(Constants.DRIVER_JOYSTICK_L_PORT);
+  LogitechJoystick driverJoystickRight = new LogitechJoystick(Constants.DRIVER_JOYSTICK_R_PORT);
+  Gamepad operatorGamepad = new Gamepad(Constants.OPERATOR_CONTROLLER_PORT);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     configureButtonBindings();
+
+    // setting drive type. CHANGE BASED ON PREFERENCE
+    drivetrain.setDefaultCommand(
+      new CurvatureDrive(
+          drivetrain, 
+          () -> getLeftDriverJoystickY(), 
+          () -> getRightDriverJoystickX()
+      )
+    );
+
+    // drivetrain.setDefaultCommand(
+    //   new ArcadeDrive(
+    //       drivetrain, 
+    //       () -> getLeftDriverJoystickY(), 
+    //       () -> getRightDriverJoystickX()
+    //   )
+    // );
+
+    // drivetrain.setDefaultCommand(
+    //   new TankDrive(
+    //       drivetrain, 
+    //       () -> getLeftDriverJoystickY(), 
+    //       () -> getRightDriverJoystickY()
+    //   )
+    // );
+
+    // add auto commands to Shuffleboard
+    autoChooser.addOption("Test", autoCommand);
+    Shuffleboard.getTab("Auto").add(autoChooser);
   }
 
   /**
@@ -43,6 +82,20 @@ public class RobotContainer {
   private void configureButtonBindings() {
   }
 
+  private double getLeftDriverJoystickY() {
+    double y = driverJoystickLeft.getY();
+    return y;
+  }
+
+  private double getRightDriverJoystickY() {
+    double y = driverJoystickRight.getY();
+    return y;
+  }
+
+  private double getRightDriverJoystickX() {
+    double x = driverJoystickRight.getX();
+    return x;
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -50,7 +103,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return autoCommand;
   }
 }
