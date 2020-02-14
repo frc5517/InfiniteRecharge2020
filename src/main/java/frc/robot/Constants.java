@@ -17,13 +17,30 @@ package frc.robot;
  */
 public final class Constants {
 
-    // drivetrain constants
+    // drivetrain constants - Spark
     public static final int DRIVE_FL_PORT = 0;
     public static final int DRIVE_ML_PORT = 1;
     public static final int DRIVE_RL_PORT = 2;
     public static final int DRIVE_FR_PORT = 3;
     public static final int DRIVE_MR_PORT = 4;
     public static final int DRIVE_RR_PORT = 5;
+
+    // intake constants - SRX
+    public static final int INTAKE_PORT = 0;
+
+    // conveyor constants - SRX
+    public static final int CONVEYOR_L_PORT = 1;
+    public static final int CONVEYOR_R_PORT = 2;
+
+    // shooter constants - SRX
+    public static final int SHOOTER_L_PORT = 3;
+    public static final int SHOOTER_R_PORT = 4;
+
+    // climber constants - Spark MAX
+    public static final int CLIMBER_PORT = 0;
+    
+    // wrist constants - Spark MAX
+    public static final int WRIST_PORT = 1;
 
     // controller constants
     public static final int DRIVER_JOYSTICK_L_PORT = 0;
