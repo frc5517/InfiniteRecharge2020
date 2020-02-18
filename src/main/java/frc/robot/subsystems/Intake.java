@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+<<<<<<< HEAD
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -15,6 +16,14 @@ import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
   WPI_TalonSRX intake = new WPI_TalonSRX(Constants.INTAKE_PORT);
+=======
+import edu.wpi.first.wpilibj.Spark;
+
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+public class Intake extends SubsystemBase {
+
+>>>>>>> 545e13aa2a884c5e8f77bbfdd4cc17d0f13d9c70
   /**
    * Creates a new Intake.
    */
@@ -22,6 +31,7 @@ public class Intake extends SubsystemBase {
 
   }
 
+<<<<<<< HEAD
   public void intakeIn(double power) {
     intake.set(ControlMode.PercentOutput, power);
   }
@@ -34,6 +44,8 @@ public class Intake extends SubsystemBase {
     intake.stopMotor();
   }
 
+=======
+>>>>>>> 545e13aa2a884c5e8f77bbfdd4cc17d0f13d9c70
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
