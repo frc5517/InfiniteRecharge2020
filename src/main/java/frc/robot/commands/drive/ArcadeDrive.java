@@ -7,7 +7,7 @@
 
 package frc.robot.commands.drive;
 
-import frc.robot.drives.Drivetrain;
+import frc.robot.subsystems.Drivetrain;
 
 import java.util.function.DoubleSupplier;
 
