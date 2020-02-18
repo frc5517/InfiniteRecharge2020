@@ -7,32 +7,32 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class Intake extends SubsystemBase {
-  
-  WPI_TalonSRX intake = new WPI_TalonSRX(Constants.INTAKE_PORT);
+public class Climber extends SubsystemBase {
+
+  CANSparkMax climbMotor = new CANSparkMax(Constants.CLIMBER_PORT, MotorType.kBrushless);
   /**
-   * Creates a new Intake.
+   * Creates a new Climber.
    */
-  public Intake() {
+  public Climber() {
 
   }
 
-  public void intakeIn(double power) {
-    intake.set(ControlMode.PercentOutput, power);
+  public void climbUp(double power) {
+    climbMotor.set(power);
   }
 
-  public void intakeOut(double power) {
-    intake.set(ControlMode.PercentOutput, -power);
+  public void climbDown(double power) {
+    climbMotor.set(-power);
   }
 
-  public void intakeStop() {
-    intake.stopMotor();
+  public void climbStop() {
+    climbMotor.stopMotor();
   }
 
   @Override

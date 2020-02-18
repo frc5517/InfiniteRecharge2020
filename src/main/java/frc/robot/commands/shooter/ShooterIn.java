@@ -14,15 +14,15 @@ import frc.robot.subsystems.Shooter;
 
 public class ShooterIn extends CommandBase {
   private final Shooter shooter;
-  private final DoubleSupplier dPower;
+  private final DoubleSupplier power;
 
 
   /**
    * Creates a new ShooterIn.
    */
-  public ShooterIn(Shooter shoot, DoubleSupplier power) {
+  public ShooterIn(Shooter shoot, DoubleSupplier dPower) {
     shooter = shoot;
-    dPower = power;
+    power = dPower;
     addRequirements(shooter);
   }
 
@@ -34,7 +34,7 @@ public class ShooterIn extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shooter.shooterIn(dPower.getAsDouble());
+    shooter.shooterIn(power.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.

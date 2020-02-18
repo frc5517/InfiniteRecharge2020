@@ -1,36 +1,28 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018-2019 FIRST. All Rights Reserved.                        */
+/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.drive;
-
-import frc.robot.subsystems.Drivetrain;
+package frc.robot.commands.climber;
 
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Climber;
 
-/**
- * An example command that uses an example drive.
- */
-public class ArcadeDrive extends CommandBase {
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final Drivetrain drivetrain;
-  private final DoubleSupplier forward, rotation;
+public class ClimbDown extends CommandBase {
+  private final Climber climber;
+  private final DoubleSupplier dPower;
 
   /**
-   * Creates a new ExampleCommand.
-   *
-   * @param drive The drive used by this command.
+   * Creates a new ClimbDown.
    */
-  public ArcadeDrive(Drivetrain drive, DoubleSupplier yForward, DoubleSupplier zRotation) {
-    drivetrain = drive;
-    forward = yForward;
-    rotation = zRotation;
-    addRequirements(drivetrain);
+  public ClimbDown(Climber climb, DoubleSupplier power) {
+    climber = climb;
+    dPower = power;
+    addRequirements(climber);
   }
 
   // Called when the command is initially scheduled.
@@ -41,13 +33,13 @@ public class ArcadeDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    drivetrain.arcadeDrive(forward.getAsDouble(), rotation.getAsDouble());
+    climber.climbDown(dPower.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    drivetrain.stopDrive();
+    climber.climbStop();
   }
 
   // Returns true when the command should end.

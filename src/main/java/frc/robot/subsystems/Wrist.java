@@ -7,32 +7,32 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class Intake extends SubsystemBase {
-  
-  WPI_TalonSRX intake = new WPI_TalonSRX(Constants.INTAKE_PORT);
+public class Wrist extends SubsystemBase {
+  CANSparkMax wristMotor = new CANSparkMax(Constants.WRIST_PORT, MotorType.kBrushless);
+
   /**
-   * Creates a new Intake.
+   * Creates a new Wrist.
    */
-  public Intake() {
+  public Wrist() {
 
   }
 
-  public void intakeIn(double power) {
-    intake.set(ControlMode.PercentOutput, power);
+  public void wristUp(double power) {
+    wristMotor.set(power);
   }
 
-  public void intakeOut(double power) {
-    intake.set(ControlMode.PercentOutput, -power);
+  public void wristDown(double power) {
+    wristMotor.set(-power);
   }
 
-  public void intakeStop() {
-    intake.stopMotor();
+  public void wristStop() {
+    wristMotor.stopMotor();
   }
 
   @Override

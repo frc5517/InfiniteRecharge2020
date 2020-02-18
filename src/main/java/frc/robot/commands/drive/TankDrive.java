@@ -16,15 +16,15 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class TankDrive extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Drivetrain drivetrain;
-  private final DoubleSupplier yLeft, yRight;
+  private final DoubleSupplier left, right;
 
   /**
    * Creates a new TankDrive.
    */
-  public TankDrive(Drivetrain drive, DoubleSupplier left, DoubleSupplier right) {
+  public TankDrive(Drivetrain drive, DoubleSupplier yLeft, DoubleSupplier yRight) {
     drivetrain = drive;
-    yLeft = left;
-    yRight = right;
+    left = yLeft;
+    right = yRight;
     addRequirements(drivetrain);
   }
 
@@ -36,7 +36,7 @@ public class TankDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    drivetrain.tankDrive(yLeft.getAsDouble(), yRight.getAsDouble());
+    drivetrain.tankDrive(left.getAsDouble(), right.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.

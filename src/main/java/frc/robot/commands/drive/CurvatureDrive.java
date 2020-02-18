@@ -19,17 +19,17 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class CurvatureDrive extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Drivetrain drivetrain;
-  private final DoubleSupplier yForward, zRotation;
+  private final DoubleSupplier forward, rotation;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param drive The drive used by this command.
    */
-  public CurvatureDrive(Drivetrain drive, DoubleSupplier forward, DoubleSupplier rotation) {
+  public CurvatureDrive(Drivetrain drive, DoubleSupplier yForward, DoubleSupplier zRotation) {
     drivetrain = drive;
-    yForward = forward;
-    zRotation = rotation;
+    forward = yForward;
+    rotation = zRotation;
     addRequirements(drivetrain);
   }
 
@@ -41,7 +41,7 @@ public class CurvatureDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    drivetrain.curvatureDrive(yForward.getAsDouble(), zRotation.getAsDouble(), true);
+    drivetrain.curvatureDrive(forward.getAsDouble(), rotation.getAsDouble(), true);
   }
 
   // Called once the command ends or is interrupted.

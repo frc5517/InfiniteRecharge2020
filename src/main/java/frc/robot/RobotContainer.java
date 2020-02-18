@@ -14,7 +14,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.commands.drive.ArcadeDrive;
 import frc.robot.commands.drive.CurvatureDrive;
 import frc.robot.commands.drive.TankDrive;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Wrist;
 import frc.robot.utilities.Gamepad;
 import frc.robot.utilities.LogitechJoystick;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -28,14 +32,26 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Drivetrain drivetrain = new Drivetrain();
+  private final Intake intake = new Intake();
+  private final Wrist wrist = new Wrist();
+  private final Shooter shooter = new Shooter();
+  private final Climber climber = new Climber();
+
+  LogitechJoystick driverJoystickLeft = new LogitechJoystick(Constants.DRIVER_JOYSTICK_L_PORT);
+  LogitechJoystick driverJoystickRight = new LogitechJoystick(Constants.DRIVER_JOYSTICK_R_PORT);
+  Gamepad operatorGamepad = new Gamepad(Constants.OPERATOR_CONTROLLER_PORT);
 
   private final Command autoCommand = null;
 
   SendableChooser<Command> autoChooser = new SendableChooser<>();
 
-  LogitechJoystick driverJoystickLeft = new LogitechJoystick(Constants.DRIVER_JOYSTICK_L_PORT);
-  LogitechJoystick driverJoystickRight = new LogitechJoystick(Constants.DRIVER_JOYSTICK_R_PORT);
-  Gamepad operatorGamepad = new Gamepad(Constants.OPERATOR_CONTROLLER_PORT);
+  private enum DriveMode {
+    Curvature, Arcade, Tank
+  }
+
+  private DriveMode driveMode;
+
+  SendableChooser<DriveMode> driveChooser = new SendableChooser<>();
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -44,29 +60,40 @@ public class RobotContainer {
     configureButtonBindings();
 
     // setting drive type. CHANGE BASED ON PREFERENCE
-    drivetrain.setDefaultCommand(
-      new CurvatureDrive(
-          drivetrain, 
-          () -> getLeftDriverJoystickY(), 
-          () -> getRightDriverJoystickX()
-      )
-    );
+    switch(driveMode) {
+      case Curvature:
+        drivetrain.setDefaultCommand(
+          new CurvatureDrive(
+              drivetrain, 
+              () -> getLeftDriverJoystickY(), 
+              () -> getRightDriverJoystickX()
+          )
+        );
 
-    // drivetrain.setDefaultCommand(
-    //   new ArcadeDrive(
-    //       drivetrain, 
-    //       () -> getLeftDriverJoystickY(), 
-    //       () -> getRightDriverJoystickX()
-    //   )
-    // );
+      case Arcade:
+        drivetrain.setDefaultCommand(
+          new ArcadeDrive(
+              drivetrain, 
+              () -> getLeftDriverJoystickY(), 
+              () -> getRightDriverJoystickX()
+          )
+        );
 
-    // drivetrain.setDefaultCommand(
-    //   new TankDrive(
-    //       drivetrain, 
-    //       () -> getLeftDriverJoystickY(), 
-    //       () -> getRightDriverJoystickY()
-    //   )
-    // );
+      case Tank:
+        drivetrain.setDefaultCommand(
+          new TankDrive(
+              drivetrain, 
+              () -> getLeftDriverJoystickY(), 
+              () -> getRightDriverJoystickY()
+          )
+        );
+    }
+
+    // add drive modes to Shuffleboard
+    driveChooser.addOption("Curvature Drive", DriveMode.Curvature);
+    driveChooser.addOption("Arcade Drive", DriveMode.Arcade);
+    driveChooser.addOption("Tank Drive", DriveMode.Tank);
+    Shuffleboard.getTab("Drive Mode").add(driveChooser);
 
     // add auto commands to Shuffleboard
     autoChooser.addOption("Test", autoCommand);

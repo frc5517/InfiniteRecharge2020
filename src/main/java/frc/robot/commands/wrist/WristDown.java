@@ -1,36 +1,27 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018-2019 FIRST. All Rights Reserved.                        */
+/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.drive;
-
-import frc.robot.subsystems.Drivetrain;
+package frc.robot.commands.wrist;
 
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Wrist;
 
-/**
- * An example command that uses an example drive.
- */
-public class ArcadeDrive extends CommandBase {
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final Drivetrain drivetrain;
-  private final DoubleSupplier forward, rotation;
-
+public class WristDown extends CommandBase {
+  private final Wrist wrist;
+  private final DoubleSupplier power;
   /**
-   * Creates a new ExampleCommand.
-   *
-   * @param drive The drive used by this command.
+   * Creates a new WristDown.
    */
-  public ArcadeDrive(Drivetrain drive, DoubleSupplier yForward, DoubleSupplier zRotation) {
-    drivetrain = drive;
-    forward = yForward;
-    rotation = zRotation;
-    addRequirements(drivetrain);
+  public WristDown(Wrist wr, DoubleSupplier dPower) {
+    wrist = wr;
+    power = dPower;
+    addRequirements(wrist);
   }
 
   // Called when the command is initially scheduled.
@@ -41,13 +32,13 @@ public class ArcadeDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    drivetrain.arcadeDrive(forward.getAsDouble(), rotation.getAsDouble());
+    wrist.wristDown(power.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    drivetrain.stopDrive();
+    wrist.wristStop();
   }
 
   // Returns true when the command should end.
