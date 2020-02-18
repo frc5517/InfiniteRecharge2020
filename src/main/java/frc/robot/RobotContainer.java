@@ -58,8 +58,18 @@ public class RobotContainer {
    */
   public RobotContainer() {
     configureButtonBindings();
+    
+    // add drive modes to Shuffleboard
+    driveChooser.addOption("Curvature Drive", DriveMode.Curvature);
+    driveChooser.addOption("Arcade Drive", DriveMode.Arcade);
+    driveChooser.addOption("Tank Drive", DriveMode.Tank);
+    Shuffleboard.getTab("Drive Mode").add(driveChooser);
 
-    // setting drive type. CHANGE BASED ON PREFERENCE
+    // add auto commands to Shuffleboard
+    autoChooser.addOption("Test", autoCommand);
+    Shuffleboard.getTab("Auto").add(autoChooser);
+
+    // setting drive type. changes based on the selection in Shuffleboard
     switch(driveMode) {
       case Curvature:
         drivetrain.setDefaultCommand(
@@ -88,16 +98,6 @@ public class RobotContainer {
           )
         );
     }
-
-    // add drive modes to Shuffleboard
-    driveChooser.addOption("Curvature Drive", DriveMode.Curvature);
-    driveChooser.addOption("Arcade Drive", DriveMode.Arcade);
-    driveChooser.addOption("Tank Drive", DriveMode.Tank);
-    Shuffleboard.getTab("Drive Mode").add(driveChooser);
-
-    // add auto commands to Shuffleboard
-    autoChooser.addOption("Test", autoCommand);
-    Shuffleboard.getTab("Auto").add(autoChooser);
   }
 
   /**
