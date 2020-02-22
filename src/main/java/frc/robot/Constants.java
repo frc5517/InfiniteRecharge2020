@@ -18,12 +18,12 @@ package frc.robot;
 public final class Constants {
 
     // drivetrain constants - Spark
-    public static final int DRIVE_FL_PORT = 0;
-    public static final int DRIVE_ML_PORT = 1;
-    public static final int DRIVE_RL_PORT = 2;
-    public static final int DRIVE_FR_PORT = 3;
-    public static final int DRIVE_MR_PORT = 4;
-    public static final int DRIVE_RR_PORT = 5;
+    public static final int DRIVE_FL_PORT = 0; //Front Left
+    public static final int DRIVE_ML_PORT = 1; //Middle Left
+    public static final int DRIVE_RL_PORT = 2; //Rear Left
+    public static final int DRIVE_FR_PORT = 3; //Front Right
+    public static final int DRIVE_MR_PORT = 4; //Middle Right
+    public static final int DRIVE_RR_PORT = 5; //Rear Right
 
     // intake constants - SRX
     public static final int INTAKE_PORT = 0;
