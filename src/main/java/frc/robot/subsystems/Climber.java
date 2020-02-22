@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 //import com.revrobotics.CANSparkMax;
 //import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -27,11 +29,11 @@ public class Climber extends SubsystemBase {
   }
 
   public void climbUp(double power) {
-    climbMotor.set(power);
+    climbMotor.set(ControlMode.PercentOutput, power);
   }
 
   public void climbDown(double power) {
-    climbMotor.set(-power);
+    climbMotor.set(ControlMode.PercentOutput, -power);
   }
 
   public void climbStop() {

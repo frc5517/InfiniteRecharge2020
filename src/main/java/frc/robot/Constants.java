@@ -26,21 +26,21 @@ public final class Constants {
     public static final int DRIVE_RR_PORT = 5; //Rear Right
 
     // intake constants - SRX
-    public static final int INTAKE_PORT = 0;
+    public static final int INTAKE_PORT = 6;
 
     // conveyor constants - SRX
-    public static final int CONVEYOR_L_PORT = 1;
-    public static final int CONVEYOR_R_PORT = 2;
+    public static final int CONVEYOR_L_PORT = 7;
+    public static final int CONVEYOR_R_PORT = 8;
 
     // shooter constants - SRX
-    public static final int SHOOTER_L_PORT = 3;
-    public static final int SHOOTER_R_PORT = 4;
+    public static final int SHOOTER_L_PORT = 9;
+    public static final int SHOOTER_R_PORT = 10;
 
     // climber constants - Spark MAX
-    public static final int CLIMBER_PORT = 0;
+    public static final int CLIMBER_PORT = 11;
     
     // wrist constants - Spark MAX
-    public static final int WRIST_PORT = 1;
+    public static final int WRIST_PORT = 12;
 
     // controller constants
     public static final int DRIVER_JOYSTICK_L_PORT = 0;

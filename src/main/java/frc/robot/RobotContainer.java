@@ -82,27 +82,36 @@ public class RobotContainer {
       case Curvature:
         drivetrain.setDefaultCommand(
           new CurvatureDrive(
-              drivetrain, 
-              () -> getLeftDriverJoystickY(), 
-              () -> getRightDriverJoystickX()
+            drivetrain, 
+            () -> getLeftDriverJoystickY(), 
+            () -> getRightDriverJoystickX()
           )
         );
 
       case Arcade:
         drivetrain.setDefaultCommand(
           new ArcadeDrive(
-              drivetrain, 
-              () -> getLeftDriverJoystickY(), 
-              () -> getRightDriverJoystickX()
+            drivetrain, 
+            () -> getLeftDriverJoystickY(), 
+            () -> getRightDriverJoystickX()
           )
         );
 
       case Tank:
         drivetrain.setDefaultCommand(
           new TankDrive(
-              drivetrain, 
-              () -> getLeftDriverJoystickY(), 
-              () -> getRightDriverJoystickY()
+            drivetrain, 
+            () -> getLeftDriverJoystickY(), 
+            () -> getRightDriverJoystickY()
+          )
+        );
+
+      default:
+        drivetrain.setDefaultCommand(
+          new CurvatureDrive(
+            drivetrain, 
+            () -> getLeftDriverJoystickY(),
+            () -> getRightDriverJoystickX()
           )
         );
     }
@@ -134,12 +143,7 @@ public class RobotContainer {
     double y = driverJoystickLeft.getY();
     return y;
   }
-/*
-  private double getLeftDriverJoystickX() {
-    double y = driverJoystickLeft.getX();
-    return y;
-  }
-*/
+
   private double getRightDriverJoystickY() {
     double y = driverJoystickRight.getY();
     return y;
