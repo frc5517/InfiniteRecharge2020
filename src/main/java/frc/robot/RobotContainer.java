@@ -71,11 +71,11 @@ public class RobotContainer {
     driveChooser.addOption("Curvature Drive", DriveMode.Curvature);
     driveChooser.addOption("Arcade Drive", DriveMode.Arcade);
     driveChooser.addOption("Tank Drive", DriveMode.Tank);
-    Shuffleboard.getTab("Drive").add(driveChooser);
+    Shuffleboard.getTab("SmartDashboard").add(driveChooser);
 
     // add auto commands to Shuffleboard
     autoChooser.addOption("Test", autoCommand);
-    Shuffleboard.getTab("Drive").add(autoChooser);
+    Shuffleboard.getTab("SmartDashboard").add(autoChooser);
 
     // setting drive type. changes based on the selection in Shuffleboard
     // switch(driveMode) {
