@@ -26,13 +26,13 @@ public class Shooter extends SubsystemBase {
   }
 
   public void shooterIn(double power) {
-    shooterLeft.set(ControlMode.PercentOutput, power);
-    shooterRight.set(ControlMode.PercentOutput, -power);
+    shooterLeft.set(ControlMode.PercentOutput, -power);
+    shooterRight.set(ControlMode.PercentOutput, power);
   }
 
   public void shooterOut(double power) {
-    shooterLeft.set(ControlMode.PercentOutput, -power);
-    shooterRight.set(ControlMode.PercentOutput, power);
+    shooterLeft.set(ControlMode.PercentOutput, power);
+    shooterRight.set(ControlMode.PercentOutput, -power);
   }
 
   public void shooterStop() {

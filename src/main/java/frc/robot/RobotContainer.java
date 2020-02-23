@@ -71,50 +71,58 @@ public class RobotContainer {
     driveChooser.addOption("Curvature Drive", DriveMode.Curvature);
     driveChooser.addOption("Arcade Drive", DriveMode.Arcade);
     driveChooser.addOption("Tank Drive", DriveMode.Tank);
-    Shuffleboard.getTab("Drive Mode").add(driveChooser);
+    Shuffleboard.getTab("Drive").add(driveChooser);
 
     // add auto commands to Shuffleboard
     autoChooser.addOption("Test", autoCommand);
-    Shuffleboard.getTab("Auto").add(autoChooser);
+    Shuffleboard.getTab("Drive").add(autoChooser);
 
     // setting drive type. changes based on the selection in Shuffleboard
-    switch(driveMode) {
-      case Curvature:
-        drivetrain.setDefaultCommand(
-          new CurvatureDrive(
-            drivetrain, 
-            () -> getLeftDriverJoystickY(), 
-            () -> getRightDriverJoystickX()
-          )
-        );
+    // switch(driveMode) {
+    //   case Curvature:
+    //     drivetrain.setDefaultCommand(
+    //       new CurvatureDrive(
+    //         drivetrain, 
+    //         () -> getLeftDriverJoystickY(), 
+    //         () -> getRightDriverJoystickX()
+    //       )
+    //     );
 
-      case Arcade:
-        drivetrain.setDefaultCommand(
-          new ArcadeDrive(
-            drivetrain, 
-            () -> getLeftDriverJoystickY(), 
-            () -> getRightDriverJoystickX()
-          )
-        );
+    //   case Arcade:
+    //     drivetrain.setDefaultCommand(
+    //       new ArcadeDrive(
+    //         drivetrain, 
+    //         () -> getLeftDriverJoystickY(), 
+    //         () -> getRightDriverJoystickX()
+    //       )
+    //     );
 
-      case Tank:
-        drivetrain.setDefaultCommand(
-          new TankDrive(
-            drivetrain, 
-            () -> getLeftDriverJoystickY(), 
-            () -> getRightDriverJoystickY()
-          )
-        );
+    //   case Tank:
+    //     drivetrain.setDefaultCommand(
+    //       new TankDrive(
+    //         drivetrain, 
+    //         () -> getLeftDriverJoystickY(), 
+    //         () -> getRightDriverJoystickY()
+    //       )
+    //     );
 
-      default:
-        drivetrain.setDefaultCommand(
-          new CurvatureDrive(
-            drivetrain, 
-            () -> getLeftDriverJoystickY(),
-            () -> getRightDriverJoystickX()
-          )
-        );
-    }
+    //   default:
+    //     drivetrain.setDefaultCommand(
+    //       new CurvatureDrive(
+    //         drivetrain, 
+    //         () -> getLeftDriverJoystickY(),
+    //         () -> getRightDriverJoystickX()
+    //       )
+    //     );
+    // }
+
+    drivetrain.setDefaultCommand(
+      new CurvatureDrive(
+        drivetrain, 
+        () -> getLeftDriverJoystickY(), 
+        () -> getRightDriverJoystickX()
+      )
+    );
   }
 
   /**
@@ -124,19 +132,19 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-
     //Driver Controls
+    driverJoystickRight.getJoystickButton(7).whileHeld(new ClimbUp(climber, () -> 0.75));
+    driverJoystickRight.getJoystickButton(8).whileHeld(new ClimbDown(climber, () -> 0.75));
 
     //Operator Controls
-    operatorGamepad.getLeftTrigger().whileHeld(new ShooterOut(shooter, () -> 0.75));
-    operatorGamepad.getRightTrigger().whileHeld(new ShooterIn(shooter, () -> 0.10));
-    operatorGamepad.getLeftShoulder().whileHeld(new ClimbUp(climber, () -> 0.75));
-    operatorGamepad.getRightShoulder().whileHeld(new ClimbDown(climber, () -> 0.75));
-    operatorGamepad.getButtonA().whileHeld(new IntakeIn(intake, () -> 0.75));
-    operatorGamepad.getButtonB().whileHeld(new IntakeOut(intake, () -> 0.10));
+    // operatorGamepad.getLeftTrigger().whileHeld(new ShooterOut(shooter, () -> 0.75));
+    // operatorGamepad.getRightTrigger().whileHeld(new ShooterIn(shooter, () -> 0.10));
+    operatorGamepad.getLeftShoulder().whileHeld(new ShooterIn(shooter, () -> 0.35));
+    operatorGamepad.getRightShoulder().toggleWhenPressed(new ShooterOut(shooter, () -> 0.75));
+    operatorGamepad.getButtonA().whileHeld(new IntakeIn(intake, () -> 0.50));
+    operatorGamepad.getButtonB().whileHeld(new IntakeOut(intake, () -> 0.50));
     operatorGamepad.getButtonX().whileHeld(new WristDown(wrist, () -> 0.30));
-    operatorGamepad.getButtonY().whileHeld(new WristUp(wrist, () -> 0.60));
-
+    operatorGamepad.getButtonY().whileHeld(new WristUp(wrist, () -> 0.30));
   }
 
   private double getLeftDriverJoystickY() {
