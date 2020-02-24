@@ -13,30 +13,35 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class Shooter extends SubsystemBase {
-
-  WPI_TalonSRX shooterLeft = new WPI_TalonSRX(Constants.SHOOTER_L_PORT);
-  WPI_TalonSRX shooterRight = new WPI_TalonSRX(Constants.SHOOTER_R_PORT);
+public class Indexer extends SubsystemBase {
+  WPI_TalonSRX indexerTop = new WPI_TalonSRX(Constants.INDEXER_L_PORT);
+  WPI_TalonSRX indexerBottom = new WPI_TalonSRX(Constants.INDEXER_R_PORT);
 
   /**
-   * Creates a new Shooter.
+   * Creates a new Indexer.
    */
-  public Shooter() {
+  public Indexer() {
   }
 
-  public void shooterIn(double power) {
-    shooterLeft.set(ControlMode.PercentOutput, -power);
-    shooterRight.set(ControlMode.PercentOutput, power);
+  public void indexerTopIn(double power) {
+    indexerTop.set(ControlMode.PercentOutput, power);
   }
 
-  public void shooterOut(double power) {
-    shooterLeft.set(ControlMode.PercentOutput, power);
-    shooterRight.set(ControlMode.PercentOutput, -power);
+  public void indexerTopOut(double power) {
+    indexerTop.set(ControlMode.PercentOutput, -power);
   }
 
-  public void shooterStop() {
-    shooterLeft.stopMotor();
-    shooterRight.stopMotor();
+  public void indexerBottomIn(double power) {
+    indexerBottom.set(ControlMode.PercentOutput, power);
+  }
+
+  public void indexerBottomOut(double power) {
+    indexerBottom.set(ControlMode.PercentOutput, -power);
+  }
+
+  public void indexerStop() {
+    indexerTop.stopMotor();
+    indexerBottom.stopMotor();
   }
 
   @Override

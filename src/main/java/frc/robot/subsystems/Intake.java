@@ -20,7 +20,6 @@ public class Intake extends SubsystemBase {
    * Creates a new Intake.
    */
   public Intake() {
-
   }
 
   public void intakeIn(double power) {
