@@ -36,9 +36,9 @@ public final class Constants {
     public static final int SHOOTER_L_PORT = 9;
     public static final int SHOOTER_R_PORT = 10;
 
-    // indexer constants - TalonSRX
-    public static final int INDEXER_L_PORT = 13;
-    public static final int INDEXER_R_PORT = 14;
+    // indexer constants - VictorSPX
+    public static final int INDEXER_L_PORT = 13; //top
+    public static final int INDEXER_R_PORT = 14; //bottom
 
     // climber constants - Spark MAX
     public static final int CLIMBER_PORT = 11;

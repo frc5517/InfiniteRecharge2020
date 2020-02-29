@@ -8,14 +8,15 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+//import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Indexer extends SubsystemBase {
-  WPI_TalonSRX indexerTop = new WPI_TalonSRX(Constants.INDEXER_L_PORT);
-  WPI_TalonSRX indexerBottom = new WPI_TalonSRX(Constants.INDEXER_R_PORT);
+  WPI_VictorSPX indexerTop = new WPI_VictorSPX(Constants.INDEXER_L_PORT);
+  WPI_VictorSPX indexerBottom = new WPI_VictorSPX(Constants.INDEXER_R_PORT);
 
   /**
    * Creates a new Indexer.

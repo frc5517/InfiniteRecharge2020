@@ -10,23 +10,28 @@ package frc.robot.commands.shooter;
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Shooter;
 
 public class ShooterOut extends CommandBase {
   private final Shooter shooter;
-  private final DoubleSupplier power;
+  private final Indexer indexer;
+  private final DoubleSupplier power, indexerPower;
 
 
   /**
    * Creates a new ShooterOut.
    */
-  public ShooterOut(Shooter shoot, DoubleSupplier dPower) {
+  public ShooterOut(Shooter shoot, Indexer ind, DoubleSupplier dPower, DoubleSupplier indPower) {
     shooter = shoot;
+    indexer = ind;
     power = dPower;
-    addRequirements(shooter);
+    indexerPower = indPower;
+    addRequirements(shooter, indexer);
   }
 
-  // Called when the command is initially scheduled.
+
+// Called when the command is initially scheduled.
   @Override
   public void initialize() {
   }
@@ -35,12 +40,14 @@ public class ShooterOut extends CommandBase {
   @Override
   public void execute() {
     shooter.shooterOut(power.getAsDouble());
+    indexer.indexerTopIn(indexerPower.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     shooter.shooterStop();
+    indexer.indexerStop();
   }
 
   // Returns true when the command should end.

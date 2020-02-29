@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.drive.CurvatureDrive;
 import frc.robot.commands.shooter.ShooterOut;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Shooter;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -20,9 +21,9 @@ public class AutoMiddleToRendezvousPoint extends SequentialCommandGroup {
   /**
    * Creates a new AutoMiddleToRendezvousPoint.
    */
-  public AutoMiddleToRendezvousPoint(Drivetrain drivetrain, Shooter shooter) {
+  public AutoMiddleToRendezvousPoint(Drivetrain drivetrain, Shooter shooter, Indexer indexer) {
     super(
-      new ShooterOut(shooter, () -> 0.75).withTimeout(3),
+      new ShooterOut(shooter, indexer, () -> 0.75, () -> 0.40).withTimeout(3),
       new CurvatureDrive(drivetrain, () -> 0.5, () -> 0.0).withTimeout(3)
     );
   }

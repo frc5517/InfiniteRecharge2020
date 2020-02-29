@@ -91,7 +91,7 @@ public class RobotContainer {
     operatorGamepad.getLeftTrigger().whileHeld(new IndexerTopIn(indexer, () -> 0.50));
     operatorGamepad.getRightTrigger().whileHeld(new IndexerTopOut(indexer, () -> 0.50));
     operatorGamepad.getLeftShoulder().whileHeld(new ShooterIn(shooter, () -> 0.35));
-    operatorGamepad.getRightShoulder().whileHeld(new ShooterOut(shooter, () -> 0.75));
+    operatorGamepad.getRightShoulder().whileHeld(new ShooterOut(shooter, indexer, () -> 0.90, () -> 0.75));
     operatorGamepad.getButtonX().whileHeld(new WristDown(wrist, () -> 0.30));
     operatorGamepad.getButtonY().whileHeld(new WristUp(wrist, () -> 0.30));
   }
