@@ -5,26 +5,28 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.autonomous;
+package frc.robot.commands.shooter;
+
+import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.drive.CurvatureDrive;
-import frc.robot.commands.shooter.Shoot;
-import frc.robot.subsystems.Drivetrain;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.commands.indexer.IndexerTopIn;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Shooter;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class AutoMiddleToRendezvousPoint extends SequentialCommandGroup {
+public class Shoot extends SequentialCommandGroup {
   /**
-   * Creates a new AutoMiddleToRendezvousPoint.
+   * Creates a new Shoot.
    */
-  public AutoMiddleToRendezvousPoint(Drivetrain drivetrain, Shooter shooter, Indexer indexer) {
+  public Shoot(Shooter shooter, Indexer indexer, DoubleSupplier shooterPower, DoubleSupplier indexerPower) {
     super(
-      new Shoot(shooter, indexer, () -> 0.75, () -> 0.5).withTimeout(5),
-      new CurvatureDrive(drivetrain, () -> 0.5, () -> 0.0).withTimeout(3)
+      new ShooterOut(shooter, shooterPower), 
+      new WaitCommand(1),
+      new IndexerTopIn(indexer, indexerPower)
     );
   }
 }
