@@ -25,23 +25,27 @@ public final class Constants {
     public static final int DRIVE_MR_PORT = 4; //Middle Right
     public static final int DRIVE_RR_PORT = 5; //Rear Right
 
-    // intake constants - SRX
+    // intake constants - TalonSRX
     public static final int INTAKE_PORT = 6;
 
-    // conveyor constants - SRX
+    // conveyor constants - TalonSRX
     public static final int CONVEYOR_L_PORT = 7;
     public static final int CONVEYOR_R_PORT = 8;
 
-    // shooter constants - SRX
+    // shooter constants - TalonSRX
     public static final int SHOOTER_L_PORT = 9;
     public static final int SHOOTER_R_PORT = 10;
+
+    // indexer constants - VictorSPX
+    public static final int INDEXER_L_PORT = 13; //top
+    public static final int INDEXER_R_PORT = 14; //bottom
 
     // climber constants - Spark MAX
     public static final int CLIMBER_PORT = 11;
     
     // wrist constants - Spark MAX
     public static final int WRIST_PORT = 12;
-
+    
     // controller constants
     public static final int DRIVER_JOYSTICK_L_PORT = 0;
     public static final int DRIVER_JOYSTICK_R_PORT = 1;

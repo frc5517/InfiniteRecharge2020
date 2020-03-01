@@ -20,7 +20,6 @@ public class Wrist extends SubsystemBase {
    * Creates a new Wrist.
    */
   public Wrist() {
-
   }
 
   public void wristUp(double power) {

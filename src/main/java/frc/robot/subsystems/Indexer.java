@@ -8,35 +8,41 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-
-//import com.revrobotics.CANSparkMax;
-//import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
+//import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class Climber extends SubsystemBase {
+public class Indexer extends SubsystemBase {
+  WPI_VictorSPX indexerTop = new WPI_VictorSPX(Constants.INDEXER_L_PORT);
+  WPI_VictorSPX indexerBottom = new WPI_VictorSPX(Constants.INDEXER_R_PORT);
 
-  WPI_VictorSPX climbMotor = new WPI_VictorSPX(Constants.CLIMBER_PORT);
-  //CANSparkMax climbMotor = new CANSparkMax(Constants.CLIMBER_PORT, MotorType.kBrushless);
   /**
-   * Creates a new Climber.
+   * Creates a new Indexer.
    */
-  public Climber() {
+  public Indexer() {
   }
 
-  public void climbUp(double power) {
-    climbMotor.set(ControlMode.PercentOutput, power);
+  public void indexerTopIn(double power) {
+    indexerTop.set(ControlMode.PercentOutput, power);
   }
 
-  public void climbDown(double power) {
-    climbMotor.set(ControlMode.PercentOutput, -power);
+  public void indexerTopOut(double power) {
+    indexerTop.set(ControlMode.PercentOutput, -power);
   }
 
-  public void climbStop() {
-    climbMotor.stopMotor();
+  public void indexerBottomIn(double power) {
+    indexerBottom.set(ControlMode.PercentOutput, power);
+  }
+
+  public void indexerBottomOut(double power) {
+    indexerBottom.set(ControlMode.PercentOutput, -power);
+  }
+
+  public void indexerStop() {
+    indexerTop.stopMotor();
+    indexerBottom.stopMotor();
   }
 
   @Override

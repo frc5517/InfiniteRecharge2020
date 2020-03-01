@@ -20,15 +20,14 @@ public class Intake extends SubsystemBase {
    * Creates a new Intake.
    */
   public Intake() {
-
   }
 
   public void intakeIn(double power) {
-    intake.set(ControlMode.PercentOutput, -power);
+    intake.set(ControlMode.PercentOutput, power);
   }
 
   public void intakeOut(double power) {
-    intake.set(ControlMode.PercentOutput, power);
+    intake.set(ControlMode.PercentOutput, -power);
   }
 
   public void intakeStop() {

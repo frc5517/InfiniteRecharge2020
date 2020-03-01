@@ -10,20 +10,24 @@ package frc.robot.commands.intake;
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
 
 public class IntakeIn extends CommandBase {
   private final Intake intake;
-  private final DoubleSupplier dPower;
+  private final Indexer indexer;
+  private final DoubleSupplier intakePower, indexerPower;
 
 
   /**
    * Creates a new IntakeIn.
    */
-  public IntakeIn(Intake in, DoubleSupplier power) {
+  public IntakeIn(Intake in, Indexer ind, DoubleSupplier inPower, DoubleSupplier indPower) {
     intake = in;
-    dPower = power;
-    addRequirements(intake);
+    indexer = ind;
+    intakePower = inPower;
+    indexerPower = indPower;
+    addRequirements(intake, indexer);
   }
 
   // Called when the command is initially scheduled.
@@ -34,13 +38,15 @@ public class IntakeIn extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intake.intakeIn(dPower.getAsDouble());
+    intake.intakeIn(intakePower.getAsDouble());
+    indexer.indexerBottomIn(indexerPower.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     intake.intakeStop();
+    indexer.indexerStop();
   }
 
   // Returns true when the command should end.

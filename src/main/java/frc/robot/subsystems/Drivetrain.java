@@ -31,7 +31,6 @@ public class Drivetrain extends SubsystemBase {
    * Creates a new Drivetrain.
    */
   public Drivetrain() {
-
   }
 
   public void curvatureDrive(double throttle, double rotation, Boolean quickTurn) {

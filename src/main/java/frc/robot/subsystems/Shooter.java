@@ -22,7 +22,6 @@ public class Shooter extends SubsystemBase {
    * Creates a new Shooter.
    */
   public Shooter() {
-
   }
 
   public void shooterIn(double power) {
