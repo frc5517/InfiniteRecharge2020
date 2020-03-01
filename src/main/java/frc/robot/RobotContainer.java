@@ -140,7 +140,7 @@ public class RobotContainer {
     // operatorGamepad.getLeftTrigger().whileHeld(new ShooterOut(shooter, () -> 0.75));
     // operatorGamepad.getRightTrigger().whileHeld(new ShooterIn(shooter, () -> 0.10));
     operatorGamepad.getLeftShoulder().whileHeld(new ShooterIn(shooter, () -> 0.35));
-    operatorGamepad.getRightShoulder().toggleWhenPressed(new ShooterOut(shooter, () -> 0.75));
+    operatorGamepad.getRightShoulder().whileHeld(new ShooterOut(shooter, () -> 0.75));
     operatorGamepad.getButtonA().whileHeld(new IntakeIn(intake, () -> 0.50));
     operatorGamepad.getButtonB().whileHeld(new IntakeOut(intake, () -> 0.50));
     operatorGamepad.getButtonX().whileHeld(new WristDown(wrist, () -> 0.30));
