@@ -11,7 +11,7 @@ import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.commands.indexer.IndexerTopIn;
+import frc.robot.commands.indexer.IndexerTopOut;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Shooter;
 
@@ -19,14 +19,27 @@ import frc.robot.subsystems.Shooter;
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
 public class Shoot extends SequentialCommandGroup {
+
+  Shooter shooter; 
+  Indexer indexer;
+
   /**
    * Creates a new Shoot.
    */
-  public Shoot(Shooter shooter, Indexer indexer, DoubleSupplier shooterPower, DoubleSupplier indexerPower) {
+  public Shoot(Shooter shooter, DoubleSupplier shooterPower, Indexer indexer, DoubleSupplier indexerPower) {
     super(
       new ShooterOut(shooter, shooterPower), 
       new WaitCommand(1),
-      new IndexerTopIn(indexer, indexerPower)
+      new IndexerTopOut(indexer, indexerPower)
     );
+    this.shooter = shooter;
+    this.indexer = indexer;
+  }
+
+  // Called once the command ends or is interrupted.
+  @Override
+  public void end(boolean interrupted) {
+    shooter.shooterStop();
+    indexer.indexerStop();
   }
 }

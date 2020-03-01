@@ -25,11 +25,11 @@ public class Indexer extends SubsystemBase {
   }
 
   public void indexerTopIn(double power) {
-    indexerTop.set(ControlMode.PercentOutput, power);
+    indexerTop.set(ControlMode.PercentOutput, -power);
   }
 
   public void indexerTopOut(double power) {
-    indexerTop.set(ControlMode.PercentOutput, -power);
+    indexerTop.set(ControlMode.PercentOutput, power);
   }
 
   public void indexerBottomIn(double power) {

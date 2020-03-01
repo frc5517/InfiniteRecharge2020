@@ -39,14 +39,14 @@ public class IntakeIn extends CommandBase {
   @Override
   public void execute() {
     intake.intakeIn(intakePower.getAsDouble());
-    indexer.indexerBottomIn(indexerPower.getAsDouble());
+    //indexer.indexerBottomIn(indexerPower.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     intake.intakeStop();
-    indexer.indexerStop();
+    //indexer.indexerStop();
   }
 
   // Returns true when the command should end.
