@@ -19,9 +19,9 @@ public class IndexerBottomIn extends CommandBase {
   /**
    * Creates a new IndexerBottomIn.
    */
-  public IndexerBottomIn(Indexer index, DoubleSupplier dPower) {
-    indexer = index;
-    power = dPower;
+  public IndexerBottomIn(Indexer indexer, DoubleSupplier power) {
+    this.indexer = indexer;
+    this.power = power;
     addRequirements(indexer);
   }
 

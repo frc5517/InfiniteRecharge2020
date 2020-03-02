@@ -14,14 +14,14 @@ import frc.robot.subsystems.Climber;
 
 public class ClimbUp extends CommandBase {
   private final Climber climber;
-  private final DoubleSupplier dPower;
+  private final DoubleSupplier power;
 
   /**
    * Creates a new ClimbUp.
    */
-  public ClimbUp(Climber climb, DoubleSupplier power) {
-    climber = climb;
-    dPower = power;
+  public ClimbUp(Climber climber, DoubleSupplier power) {
+    this.climber = climber;
+    this.power = power;
     addRequirements(climber);
   }
 
@@ -33,7 +33,7 @@ public class ClimbUp extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    climber.climbUp(dPower.getAsDouble());
+    climber.climbUp(power.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.

@@ -19,7 +19,6 @@ import frc.robot.subsystems.Shooter;
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
 public class Shoot extends SequentialCommandGroup {
-
   Shooter shooter; 
   Indexer indexer;
 

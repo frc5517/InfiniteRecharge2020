@@ -24,12 +24,12 @@ public class ArcadeDrive extends CommandBase {
   /**
    * Creates a new ExampleCommand.
    *
-   * @param drive The drive used by this command.
+   * @param drivetrain The drive used by this command.
    */
-  public ArcadeDrive(Drivetrain drive, DoubleSupplier yForward, DoubleSupplier zRotation) {
-    drivetrain = drive;
-    forward = yForward;
-    rotation = zRotation;
+  public ArcadeDrive(Drivetrain drivetrain, DoubleSupplier forward, DoubleSupplier rotation) {
+    this.drivetrain = drivetrain;
+    this.forward = forward;
+    this.rotation = rotation;
     addRequirements(drivetrain);
   }
 

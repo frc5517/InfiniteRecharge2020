@@ -22,11 +22,11 @@ public class IntakeOut extends CommandBase {
   /**
    * Creates a new IntakeOut.
    */
-  public IntakeOut(Intake in, Indexer ind, DoubleSupplier inPower, DoubleSupplier indPower) {
-    intake = in;
-    indexer = ind;
-    intakePower = inPower;
-    indexerPower = indPower;
+  public IntakeOut(Intake intake, Indexer indexer, DoubleSupplier intakePower, DoubleSupplier indexerPower) {
+    this.intake = intake;
+    this.indexer = indexer;
+    this.intakePower = intakePower;
+    this.indexerPower = indexerPower;
     addRequirements(intake, indexer);
   }
 

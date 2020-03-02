@@ -19,9 +19,9 @@ public class IndexerTopOut extends CommandBase {
   /**
    * Creates a new IndexerTopOut.
    */
-  public IndexerTopOut(Indexer index, DoubleSupplier dPower) {
-    indexer = index;
-    power = dPower;
+  public IndexerTopOut(Indexer indexer, DoubleSupplier power) {
+    this.indexer = indexer;
+    this.power = power;
     addRequirements(indexer);
   }
 

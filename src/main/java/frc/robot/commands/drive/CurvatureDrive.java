@@ -25,10 +25,10 @@ public class CurvatureDrive extends CommandBase {
    *
    * @param drive The drive used by this command.
    */
-  public CurvatureDrive(Drivetrain drive, DoubleSupplier yForward, DoubleSupplier zRotation) {
-    drivetrain = drive;
-    forward = yForward;
-    rotation = zRotation;
+  public CurvatureDrive(Drivetrain drivetrain, DoubleSupplier forward, DoubleSupplier rotation) {
+    this.drivetrain = drivetrain;
+    this.forward = forward;
+    this.rotation = rotation;
     addRequirements(drivetrain);
   }
 

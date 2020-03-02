@@ -9,9 +9,9 @@ public class ShooterStop extends CommandBase {
   /**
    * Creates a new ShooterIn.
    */
-  public ShooterStop(Shooter shoot) {
+  public ShooterStop(Shooter shooter) {
     super();
-    shooter = shoot;
+    this.shooter = shooter;
     addRequirements(shooter);
   }
 

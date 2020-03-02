@@ -20,9 +20,9 @@ public class ShooterIn extends CommandBase {
   /**
    * Creates a new ShooterIn.
    */
-  public ShooterIn(Shooter shoot, DoubleSupplier dPower) {
-    shooter = shoot;
-    power = dPower;
+  public ShooterIn(Shooter shooter, DoubleSupplier power) {
+    this.shooter = shooter;
+    this.power = power;
     addRequirements(shooter);
   }
 

@@ -22,11 +22,11 @@ public class IntakeIn extends CommandBase {
   /**
    * Creates a new IntakeIn.
    */
-  public IntakeIn(Intake in, Indexer ind, DoubleSupplier inPower, DoubleSupplier indPower) {
-    intake = in;
-    indexer = ind;
-    intakePower = inPower;
-    indexerPower = indPower;
+  public IntakeIn(Intake intake, Indexer indexer, DoubleSupplier intakePower, DoubleSupplier indexerPower) {
+    this.intake = intake;
+    this.indexer = indexer;
+    this.intakePower = intakePower;
+    this.indexerPower = indexerPower;
     addRequirements(intake, indexer);
   }
 
@@ -39,7 +39,7 @@ public class IntakeIn extends CommandBase {
   @Override
   public void execute() {
     intake.intakeIn(intakePower.getAsDouble());
-    //indexer.indexerBottomIn(indexerPower.getAsDouble());
+    // indexer.indexerBottomIn(indexerPower.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.

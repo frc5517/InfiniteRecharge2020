@@ -21,10 +21,10 @@ public class TankDrive extends CommandBase {
   /**
    * Creates a new TankDrive.
    */
-  public TankDrive(Drivetrain drive, DoubleSupplier yLeft, DoubleSupplier yRight) {
-    drivetrain = drive;
-    left = yLeft;
-    right = yRight;
+  public TankDrive(Drivetrain drivetrain, DoubleSupplier left, DoubleSupplier right) {
+    this.drivetrain = drivetrain;
+    this.left = left;
+    this.right = right;
     addRequirements(drivetrain);
   }
 
