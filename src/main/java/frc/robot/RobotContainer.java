@@ -20,6 +20,7 @@ import frc.robot.commands.intake.IntakeIn;
 import frc.robot.commands.intake.IntakeOut;
 import frc.robot.commands.shooter.Shoot;
 import frc.robot.commands.shooter.ShooterIn;
+import frc.robot.commands.autonomous.AutoMiddleToRendezvousPoint;
 //import frc.robot.commands.shooter.ShooterOut;
 import frc.robot.commands.climber.ClimbDown;
 import frc.robot.commands.climber.ClimbUp;
@@ -54,7 +55,7 @@ public class RobotContainer {
   LogitechJoystick driverJoystickRight = new LogitechJoystick(Constants.DRIVER_JOYSTICK_R_PORT);
   Gamepad operatorGamepad = new Gamepad(Constants.OPERATOR_CONTROLLER_PORT);
 
-  private final Command autoCommand = null;
+  private final Command autoCommand = new AutoMiddleToRendezvousPoint(drivetrain, shooter, indexer);
 
   SendableChooser<Command> autoChooser = new SendableChooser<>();
 
@@ -65,13 +66,13 @@ public class RobotContainer {
     configureButtonBindings();
 
     // add auto commands to Shuffleboard
-    autoChooser.addOption("Test", autoCommand);
+    autoChooser.addOption("Shoot to Rendezvous Point", autoCommand);
     Shuffleboard.getTab("SmartDashboard").add(autoChooser);
 
     drivetrain.setDefaultCommand(
       new CurvatureDrive(
         drivetrain, 
-        () -> getLeftDriverJoystickY(), 
+        () -> getLeftDriverJoystickY(),   
         () -> getRightDriverJoystickX()
       )
     );
@@ -85,13 +86,13 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     //Driver Controls
-    driverJoystickRight.getJoystickButton(7).whileHeld(new ClimbUp(climber, () -> 0.75));
-    driverJoystickRight.getJoystickButton(8).whileHeld(new ClimbDown(climber, () -> 0.75));
-    driverJoystickRight.getJoystickTrigger().whileHeld(new IntakeOut(intake, indexer, () -> 0.50, () -> 0.50));
-    driverJoystickLeft.getJoystickTrigger().whileHeld(new IntakeIn(intake, indexer, () -> 0.50, () -> 0.50));
+    driverJoystickLeft.getJoystickTrigger().whileHeld(new IntakeOut(intake, indexer, () -> 0.50, () -> 0.50));
+    driverJoystickRight.getJoystickTrigger().whileHeld(new IntakeIn(intake, indexer, () -> 0.50, () -> 0.50));
 
     //Operator Controls
-    operatorGamepad.getButtonB().whileHeld(new IndexerBottomIn(indexer, () -> 0.50));
+    operatorGamepad.getStartButton().whileHeld(new ClimbUp(climber, () -> 0.75));
+    operatorGamepad.getBackButton().whileHeld(new ClimbDown(climber, () -> 0.75));
+    operatorGamepad.getButtonB().whileHeld(new IndexerBottomIn(indexer, () -> 0.75));
     operatorGamepad.getButtonA().whileHeld(new IndexerBottomOut(indexer, () -> 0.50));
     operatorGamepad.getLeftShoulder().whileHeld(new ShooterIn(shooter, () -> 0.35));
     operatorGamepad.getRightShoulder().whileHeld(new Shoot(shooter, () -> 0.85, indexer, () -> 0.45));

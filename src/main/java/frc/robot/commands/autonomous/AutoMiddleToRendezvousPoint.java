@@ -24,7 +24,7 @@ public class AutoMiddleToRendezvousPoint extends SequentialCommandGroup {
   public AutoMiddleToRendezvousPoint(Drivetrain drivetrain, Shooter shooter, Indexer indexer) {
     super(
       new Shoot(shooter, () -> 0.75, indexer, () -> 0.5).withTimeout(5),
-      new CurvatureDrive(drivetrain, () -> 0.5, () -> 0.0).withTimeout(3)
+      new CurvatureDrive(drivetrain, () -> -0.5, () -> 0.0).withTimeout(1.5)
     );
   }
 }
