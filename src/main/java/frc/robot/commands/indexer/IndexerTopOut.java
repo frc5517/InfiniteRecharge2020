@@ -34,6 +34,7 @@ public class IndexerTopOut extends CommandBase {
   @Override
   public void execute() {
     indexer.indexerTopOut(power.getAsDouble());
+    indexer.indexerBottomOut(power.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.

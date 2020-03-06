@@ -12,16 +12,15 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.commands.drive.CurvatureDrive;
-import frc.robot.commands.indexer.IndexerTopIn;
-import frc.robot.commands.indexer.IndexerTopOut;
 import frc.robot.commands.indexer.IndexerBottomIn;
 import frc.robot.commands.indexer.IndexerBottomOut;
+import frc.robot.commands.indexer.IndexerTopIn;
+import frc.robot.commands.indexer.IndexerTopOut;
 import frc.robot.commands.intake.IntakeIn;
 import frc.robot.commands.intake.IntakeOut;
 import frc.robot.commands.shooter.Shoot;
 import frc.robot.commands.shooter.ShooterIn;
-import frc.robot.commands.shooter.ShooterOut;
-import frc.robot.commands.shooter.ShooterStop;
+//import frc.robot.commands.shooter.ShooterOut;
 import frc.robot.commands.climber.ClimbDown;
 import frc.robot.commands.climber.ClimbUp;
 import frc.robot.commands.wrist.WristDown;
@@ -72,35 +71,42 @@ public class RobotContainer {
     drivetrain.setDefaultCommand(
       new CurvatureDrive(
         drivetrain, 
-        () -> driverJoystickRight.getY(),
-        () -> driverJoystickLeft.getX()
+        () -> getLeftDriverJoystickY(), 
+        () -> getRightDriverJoystickX()
       )
     );
   }
 
+  /**
+   * Use this method to define your button->command mappings.  Buttons can be created by
+   * instantiating a {@link GenericHID} or one of its subclasses ({@link
+   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
+   * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
+   */
   private void configureButtonBindings() {
-    configureDriverControls();
-    configureOperatorControls();
+    //Driver Controls
+    driverJoystickRight.getJoystickButton(7).whileHeld(new ClimbUp(climber, () -> 0.75));
+    driverJoystickRight.getJoystickButton(8).whileHeld(new ClimbDown(climber, () -> 0.75));
+    driverJoystickRight.getJoystickTrigger().whileHeld(new IntakeOut(intake, indexer, () -> 0.50, () -> 0.50));
+    driverJoystickLeft.getJoystickTrigger().whileHeld(new IntakeIn(intake, indexer, () -> 0.50, () -> 0.50));
+
+    //Operator Controls
+    operatorGamepad.getButtonB().whileHeld(new IndexerBottomIn(indexer, () -> 0.50));
+    operatorGamepad.getButtonA().whileHeld(new IndexerBottomOut(indexer, () -> 0.50));
+    operatorGamepad.getLeftShoulder().whileHeld(new ShooterIn(shooter, () -> 0.35));
+    operatorGamepad.getRightShoulder().whileHeld(new Shoot(shooter, () -> 0.85, indexer, () -> 0.45));
+    operatorGamepad.getButtonX().whileHeld(new WristDown(wrist, () -> 0.30));
+    operatorGamepad.getButtonY().whileHeld(new WristUp(wrist, () -> 0.30));
   }
 
-  private void configureDriverControls() {
-    driverJoystickLeft.getJoystickButton(7).whileHeld(new ClimbUp(climber, () -> 0.75));
-    driverJoystickLeft.getJoystickButton(8).whileHeld(new ClimbDown(climber, () -> 0.75));
-    driverJoystickRight.getJoystickTrigger().whileHeld(new IntakeIn(intake, indexer, () -> 0.50, () -> 0.50));
-    driverJoystickLeft.getJoystickTrigger().whileHeld(new IntakeOut(intake, indexer, () -> 0.50, () -> 0.50));
+  private double getLeftDriverJoystickY() {
+    double y = driverJoystickLeft.getY();
+    return y;
   }
 
-  private void configureOperatorControls() {
-    // operatorGamepad.getLeftTrigger().whileHeld(new IndexerTopIn(indexer, () -> 0.50));
-    // operatorGamepad.getRightTrigger().whileHeld(new IndexerTopOut(indexer, () -> 0.50));
-
-    operatorGamepad.getLeftShoulder().whileHeld(new IndexerTopIn(indexer, () -> 0.50));
-    operatorGamepad.getRightShoulder().whileHeld(new Shoot(shooter, () -> 0.75, indexer, () -> 0.35));
-
-    operatorGamepad.getButtonX().whileHeld(new WristDown(wrist, () -> 0.20));
-    operatorGamepad.getButtonY().whileHeld(new WristUp(wrist, () -> 0.20));
-    operatorGamepad.getButtonA().whileHeld(new IndexerBottomIn(indexer, () -> 0.50));
-    operatorGamepad.getButtonB().whileHeld(new IndexerBottomOut(indexer, () -> 0.50));
+  private double getRightDriverJoystickX() {
+    double x = driverJoystickRight.getX();
+    return x;
   }
 
   /**

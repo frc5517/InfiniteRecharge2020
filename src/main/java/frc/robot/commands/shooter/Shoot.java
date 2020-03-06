@@ -11,6 +11,8 @@ import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.commands.indexer.IndexerBottomIn;
+import frc.robot.commands.indexer.IndexerBottomOut;
 import frc.robot.commands.indexer.IndexerTopOut;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Shooter;
@@ -31,6 +33,7 @@ public class Shoot extends SequentialCommandGroup {
       new ShooterOut(shooter, shooterPower), 
       new WaitCommand(1),
       new IndexerTopOut(indexer, indexerPower)
+      //new IndexerBottomIn(indexer, indexerPower)
     );
     this.shooter = shooter;
     this.indexer = indexer;
