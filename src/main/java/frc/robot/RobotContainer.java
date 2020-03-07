@@ -85,11 +85,10 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    //Driver Controls driver joysticks are reversed
+    //Driver Controls 
     driverJoystickRight.getJoystickTrigger().whileHeld(new IntakeOut(intake, indexer, () -> 0.50, () -> 0.50));
     driverJoystickLeft.getJoystickTrigger().whileHeld(new IntakeIn(intake, indexer, () -> 0.50, () -> 0.50));
     driverJoystickRight.getJoystickButton(8).whileHeld(new ClimbDown(climber, () -> 0.75));
-
     //Operator Controls
     operatorGamepad.getStartButton().whileHeld(new ClimbUp(climber, () -> 0.75));
     operatorGamepad.getButtonB().whileHeld(new IndexerBottomIn(indexer, () -> 0.75));

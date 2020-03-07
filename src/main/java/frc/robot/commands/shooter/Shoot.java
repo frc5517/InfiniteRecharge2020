@@ -31,7 +31,7 @@ public class Shoot extends SequentialCommandGroup {
   public Shoot(Shooter shooter, DoubleSupplier shooterPower, Indexer indexer, DoubleSupplier indexerPower) {
     super(
       new ShooterOut(shooter, shooterPower), 
-      new WaitCommand(1),
+      new WaitCommand(1.5),
       new IndexerTopOut(indexer, indexerPower)
       //new IndexerBottomIn(indexer, indexerPower)
     );
