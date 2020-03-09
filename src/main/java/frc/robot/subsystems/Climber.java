@@ -9,9 +9,6 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
-//import com.revrobotics.CANSparkMax;
-//import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -20,7 +17,6 @@ import frc.robot.Constants;
 public class Climber extends SubsystemBase {
 
   WPI_VictorSPX climbMotor = new WPI_VictorSPX(Constants.CLIMBER_PORT);
-  //CANSparkMax climbMotor = new CANSparkMax(Constants.CLIMBER_PORT, MotorType.kBrushless);
   /**
    * Creates a new Climber.
    */

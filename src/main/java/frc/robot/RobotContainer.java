@@ -14,8 +14,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.commands.drive.CurvatureDrive;
 import frc.robot.commands.indexer.IndexerBottomIn;
 import frc.robot.commands.indexer.IndexerBottomOut;
-import frc.robot.commands.indexer.IndexerTopIn;
-import frc.robot.commands.indexer.IndexerTopOut;
 import frc.robot.commands.intake.IntakeIn;
 import frc.robot.commands.intake.IntakeOut;
 import frc.robot.commands.shooter.Shoot;
@@ -86,8 +84,8 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     //Driver Controls 
-    driverJoystickRight.getJoystickTrigger().whileHeld(new IntakeOut(intake, indexer, () -> 0.50, () -> 0.50));
-    driverJoystickLeft.getJoystickTrigger().whileHeld(new IntakeIn(intake, indexer, () -> 0.50, () -> 0.50));
+    driverJoystickRight.getJoystickTrigger().whileHeld(new IntakeOut(intake, () -> 0.50));
+    driverJoystickLeft.getJoystickTrigger().whileHeld(new IntakeIn(intake, () -> 0.50));
     driverJoystickRight.getJoystickButton(8).whileHeld(new ClimbDown(climber, () -> 0.75));
     //Operator Controls
     operatorGamepad.getStartButton().whileHeld(new ClimbUp(climber, () -> 0.75));
