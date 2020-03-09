@@ -19,7 +19,6 @@ import frc.robot.commands.intake.IntakeOut;
 import frc.robot.commands.shooter.Shoot;
 import frc.robot.commands.shooter.ShooterIn;
 import frc.robot.commands.autonomous.AutoMiddleToRendezvousPoint;
-//import frc.robot.commands.shooter.ShooterOut;
 import frc.robot.commands.climber.ClimbDown;
 import frc.robot.commands.climber.ClimbUp;
 import frc.robot.commands.wrist.WristDown;
@@ -53,7 +52,7 @@ public class RobotContainer {
   LogitechJoystick driverJoystickRight = new LogitechJoystick(Constants.DRIVER_JOYSTICK_R_PORT);
   Gamepad operatorGamepad = new Gamepad(Constants.OPERATOR_CONTROLLER_PORT);
 
-  private final Command autoCommand = new AutoMiddleToRendezvousPoint(drivetrain, shooter, indexer);
+  private final Command autoMiddleToRendezvousPointCommand = new AutoMiddleToRendezvousPoint(drivetrain, shooter, indexer);
 
   SendableChooser<Command> autoChooser = new SendableChooser<>();
 
@@ -64,7 +63,7 @@ public class RobotContainer {
     configureButtonBindings();
 
     // add auto commands to Shuffleboard
-    autoChooser.addOption("Shoot to Rendezvous Point", autoCommand);
+    autoChooser.addOption("Shoot to Rendezvous Point", autoMiddleToRendezvousPointCommand);
     Shuffleboard.getTab("SmartDashboard").add(autoChooser);
 
     drivetrain.setDefaultCommand(
@@ -87,6 +86,7 @@ public class RobotContainer {
     driverJoystickRight.getJoystickTrigger().whileHeld(new IntakeOut(intake, () -> 0.50));
     driverJoystickLeft.getJoystickTrigger().whileHeld(new IntakeIn(intake, () -> 0.50));
     driverJoystickRight.getJoystickButton(8).whileHeld(new ClimbDown(climber, () -> 0.75));
+
     //Operator Controls
     operatorGamepad.getStartButton().whileHeld(new ClimbUp(climber, () -> 0.75));
     operatorGamepad.getButtonB().whileHeld(new IndexerBottomIn(indexer, () -> 0.75));
@@ -113,6 +113,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return autoCommand;
+    return autoMiddleToRendezvousPointCommand;
   }
 }
